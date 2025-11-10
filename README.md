@@ -1,22 +1,21 @@
 # Web GEM-Based Broken Access Control (BAC) Vulnerability (Test Application)
 
-This project supports the paper "Web GEMs: Revealing Broken Access Control (BAC) Vulnerabilities in Large Web Applications Through Front-End Tampering". The goal of this project is to test the ability of popular web vulnerability scanners to detect Insecure Direct Object Reference (IDOR) vulnerabilities in SPA applications, where routing is handled by the front-end and the web server simply responds to HTTP requests to deliver content.
+This project supports the paper "Web GEMs: Revealing Broken Access Control (BAC) Vulnerabilities in Large Web Applications Through Front-End Tampering". The goal of this project is to test the ability of web vulnerability scanners to detect Insecure Direct Object Reference (IDOR) vulnerabilities in SPA applications built with JS frameworks (eg., Vue, React, Angular, etc). In this applications, routing is handled by the front-end and the web server usually responds to HTTP requests to deliver content.
 
 ## Why this test?
 
-- Classic IDOR issues occur when the web server mistakenly provides resources to unauthorized users who discover simple patterns in the URL (for example, from `/user/123` the adversary tries `/user/124`).
-- In real web applications, these patterns are often not so simple. They may rely on pseudo-random IDs and the final URL may present a complicated structure.
-- Web backend developers may neglect to protect these resources (perhaps believing the final URLs are impossible to guess).
-- In web applications with a large web front end, this critical information may be stored in the GUI state, either as a result of a previous HTTP response or as a change in internal state.
-- By exploiting browser development tools or reading the correct HTTP response, an adversary can access this information and create URLs to protected resources.
-- We've found empirically that many applications implement this pattern (although, in reality, additional steps may be required).
-- We believe this simple test can be useful to strengthen web scanners.
+- Classic IDOR vulnerabilities occur when a web server mistakenly provides resources to unauthorized users who discover simple patterns in the URLs (for example, from `/user/123` the adversary tries `/user/124`),
+- In real web applications, these patterns are often not so simple. Pseudo-random IDs may be used, and the final endpoint may present a complicated structure,
+- Web back-end developers may neglect to protect these resources (perhaps believing the final endpoint is impossible to guess),
+- In SPA applications, critical information may be stored within the component tree, as a component's state
+- Through JavaScript Component Hijacking (JCH) an adversary can access this information and craft URLs to protected resources,
+- We have empirically found that this phenomenon is not uncommon. Hence the need to develop a benchmark application to improve IDOR detection techniques.
 
 ## Step to reproduce
 
-- `git clone`.
-- `npm install` (both in the root folder and within `client/` folder).
-- build from the client `npm run build` (static content will be served by nest.js).
-- run with `npm run start`
-- test `http://localhost:3000/` with web scanners of your choice (OWASP ZAP, libraries, etc).
-- this type of IDOR can only be found by extracting relevant information (i.e., IDs) from previous HTTP messages or by inspecting the component tree with Vue Dev Tool
+- `git clone`,
+- `npm install` (both in the root folder and within `client/` folder),
+- build from the client `npm run build` (static content will be served by nest.js),
+- run with `npm run start`,
+- test `http://localhost:3000/` with web scanners of your choice (OWASP ZAP, libraries, etc),
+- A resource requiring elevated privileges can be accessed by extracting its `id` from previous HTTP messages and its `label` from the component tree, using Vue Dev Tool (eg., `http://localhost:3000/green/c7f4134d-b747-487f-872b-e0d20abac35c`).
