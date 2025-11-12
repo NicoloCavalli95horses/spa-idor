@@ -1,6 +1,6 @@
 # Web GEM-Based Broken Access Control (BAC) Vulnerability (Test Application)
 
-This project supports the paper "Web GEMs: Revealing Broken Access Control (BAC) Vulnerabilities in Web Applications Through Front-End Tampering". The goal of this project is to test the ability of web vulnerability scanners to detect Insecure Direct Object Reference (IDOR) vulnerabilities in SPA applications built with JS frameworks (eg., Vue, React, Angular, etc). In this applications, routing is handled by the front-end and the web server usually responds to HTTP requests to deliver content.
+This project supports the paper "Web GEMs: Revealing Broken Access Control (BAC) Vulnerabilities in Web Applications Through Front-End Tampering". The goal of this project is to test the ability of web vulnerability scanners to detect Insecure Direct Object Reference (IDOR) vulnerabilities in SPA applications built with JS frameworks (eg., Vue, React, Angular, etc). In these applications, routing is handled by the front-end and the web server usually responds to HTTP requests to deliver content.
 
 ## Why this test?
 
@@ -11,7 +11,7 @@ This project supports the paper "Web GEMs: Revealing Broken Access Control (BAC)
 - Through JavaScript Component Hijacking (JCH) an adversary can access this information and craft URLs to protected resources,
 - We have empirically found that this phenomenon is not uncommon. Hence the need to develop a benchmark application to improve IDOR detection techniques.
 
-## Step to reproduce
+## Setup
 
 - `git clone`,
 - `npm install` (both in the root folder and within `client/` folder),
