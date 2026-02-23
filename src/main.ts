@@ -17,7 +17,7 @@ async function bootstrap() {
   app.setGlobalPrefix('api');
   app.use(helmet());
   app.enableCors({
-    origin: ["http://localhost:5173"], // vue dev environment
+    origin: ["http://localhost:5173"], // client dev environment
   });
 
   await app.listen(PORT);

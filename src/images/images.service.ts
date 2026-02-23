@@ -11,18 +11,31 @@ import { Image } from './images.interface';
 @Injectable()
 export class ImagesService {
 
-  // This is sent to the front-end but without the labels
-  private images: Image[] = [
-    { id: "26ecef7e-4e27-426f-81c4-51a9cd41871f", label: "red", is_premium: false },
-    { id: "487b7235-204c-42eb-8535-42dd06999e75", label: "blue", is_premium: true  },
-    { id: "c7f4134d-b747-487f-872b-e0d20abac35c", label: "green", is_premium: true  },
-    { id: "dc7499ab-c68f-43b1-b679-579a23a6a02c", label: "yellow", is_premium: false },
-    { id: "6c555657-0994-4f4b-830d-ded80cedb74e", label: "pink", is_premium: false },
-    { id: "c0aff9a5-426f-43e4-af26-77a458bcbb24", label: "orange", is_premium: true  }
-  ];
+  private images: Image[] = [];
+
+  randomID(){
+    return btoa(String(Math.random())).substring(2,20).toLocaleLowerCase();
+  }
+
+  randomBoolean(){
+    return Math.random() < 0.5;
+  }
+
+  generateImages(): Image[] {
+    return [
+      { id: this.randomID(), label: "red", is_premium: this.randomBoolean() },
+      { id: this.randomID(), label: "blue", is_premium: this.randomBoolean() },
+      { id: this.randomID(), label: "green", is_premium: this.randomBoolean() },
+      { id: this.randomID(), label: "yellow", is_premium: this.randomBoolean() },
+      { id: this.randomID(), label: "pink", is_premium: this.randomBoolean() },
+      { id: this.randomID(), label: "orange", is_premium: this.randomBoolean()}
+    ];
+  }
+
 
   getAllImages() {
-    return this.images.map(i => {
+    this.images = this.generateImages();
+    return this.images.map((i: Image) => {
       const image = {...i};
       delete image.label;
       return image; 

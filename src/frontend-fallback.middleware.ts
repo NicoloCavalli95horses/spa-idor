@@ -24,7 +24,7 @@ export class FrontendFallbackMiddleware implements NestMiddleware {
       return next();
     }
 
-    const indexPath = join(process.cwd(), 'client', 'dist', 'index.html');
+    const indexPath = join(process.cwd(), 'client_dist', 'index.html');
     const stream = createReadStream(indexPath);
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
     stream.pipe(res);
