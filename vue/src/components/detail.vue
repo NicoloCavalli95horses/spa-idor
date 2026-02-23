@@ -27,7 +27,7 @@ const content = ref();
 // Functions
 // ====================
 async function getItemDetail(label, id) {
-  const url = `http://localhost:3000/api/images/${label}/${id}`;
+  const url = `http://localhost:3456/api/images/${label}/${id}`;
 
   try {
     const response = await fetch(url);

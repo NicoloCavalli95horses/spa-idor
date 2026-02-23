@@ -22,7 +22,7 @@ function App() {
   }, []);
 
   async function getData() {
-    const url = "http://localhost:3000/api/images";
+    const url = "http://localhost:3456/api/images";
 
     try {
       const response = await fetch(url);

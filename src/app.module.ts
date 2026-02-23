@@ -14,7 +14,7 @@ import { FrontendFallbackMiddleware } from './frontend-fallback.middleware';
 @Module({
   imports: [
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'client_dist'),
+      rootPath: join(__dirname, '..', 'react', 'dist'),
       exclude: ['/api/*path'],
     }),
     ImagesModule,
